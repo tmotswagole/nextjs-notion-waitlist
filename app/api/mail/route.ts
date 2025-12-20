@@ -39,7 +39,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const { email, firstname } = await request.json();
 
   const { data, error } = await resend.emails.send({
-    from: "Jurifica<hello@waitlist.lakshb.dev>",
+    from: "Jurifica<waitinglist@jurifica.com>",
     to: [email],
     subject: "Welcome to Jurifica's Private Beta Waitlist! 🚀",
     reply_to: "jurificaai@gmail.com",

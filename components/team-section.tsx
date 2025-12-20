@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animation-variants";
 
 interface TeamMemberProps {
+  img: string;
   name: string;
   role: string;
   title: string;
@@ -50,7 +51,11 @@ export default function TeamSection({
           >
             {/* Profile Icon/Avatar */}
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
-              <span className="text-3xl">👤</span>
+              <img 
+                src={member.img} 
+                alt={member.name}
+                className="w-18 h-18 rounded-full object-cover"
+              />
             </div>
 
             {/* Name and Role */}

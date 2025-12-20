@@ -8,9 +8,9 @@ import SolutionSection from "@/components/solution-section";
 import TeamSection from "@/components/team-section";
 import VisionSection from "@/components/vision-section";
 import Form from "@/components/form";
-import Logos from "@/components/logos";
+// import Logos from "@/components/logos";
 import Particles from "@/components/ui/particles";
-import Header from "@/components/header";
+// import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -23,7 +23,16 @@ export default function Home() {
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    const value = event.target.value;
+    
+    // Format the name to title case with special handling for spaces, hyphens, and apostrophes
+    const formattedValue = value
+      .toLowerCase()
+      .replace(/(^|\s|-|')([a-z])/g, (match, separator, letter) => {
+        return separator + letter.toUpperCase();
+      });
+    
+    setName(formattedValue);
   };
 
   const isValidEmail = (email: string) => {
@@ -115,7 +124,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center overflow-x-clip pt-12 md:pt-24">
       <section className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
-        <Header />
+        {/* <Header /> */}
 
         <HeroSection
           headline="Stop Guessing. Start Scaling. The AI Co-Pilot for Global Legal Compliance"
@@ -134,7 +143,7 @@ export default function Home() {
           loading={loading}
         />
 
-        <Logos />
+        {/* <Logos /> */}
       </section>
 
       {/* Problem Section */}
@@ -184,22 +193,25 @@ export default function Home() {
         subheader="Experienced entrepreneurs and legal tech experts building the future of global compliance"
         members={[
           {
+            img: "/founders/thabiso.png",
             name: "Thabiso Motswagole",
             role: "Co-Founder & CEO",
             title: "Forbes 30 Under 30 | Techstars",
-            description: "Serial entrepreneur with deep expertise in AI and international business scaling. Previously built and scaled tech companies across multiple continents."
+            description: "The Builder. Forbes 30 Under 30 winner and Techstars alumnus. Former CIO who has architected scalable platforms for global media and fintech."
           },
           {
+            img: "/founders/nicolette.png",
             name: "Nicolette Chinomona",
             role: "Co-Founder & COO",
             title: "Techstars MBA | Operations Expert",
-            description: "Operations and strategy leader with proven track record of scaling startups from seed to Series A. Expert in international market expansion and regulatory compliance."
+            description: "The Strategist. Techstars-affiliated MBA with a decade of experience coaching and scaling startups across Africa, Europe, and North America."
           },
           {
+            img: "/founders/ratidzo.png",
             name: "Ratidzo Murwisi",
-            role: "Co-Founder & CTO",
+            role: "Co-Founder & CLIO",
             title: "15+ Years Legal Technology",
-            description: "Legal technology veteran with deep expertise in AI, machine learning, and regulatory systems. Previously led engineering teams at major legal tech companies."
+            description: "The Expert. A pioneering Legal Technologist with 15 years of experience at the intersection of law and high-value international finance (Afreximbank)."
           }
         ]}
       />
