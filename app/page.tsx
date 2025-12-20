@@ -28,7 +28,7 @@ export default function Home() {
     // Format the name to title case with special handling for spaces, hyphens, and apostrophes
     const formattedValue = value
       .toLowerCase()
-      .replace(/(^|\s|-|')([a-z])/g, (match, separator, letter) => {
+      .replace(/(^|\s|-|')([a-z])/g, (_, separator, letter) => {
         return separator + letter.toUpperCase();
       });
     
@@ -41,8 +41,19 @@ export default function Home() {
   };
 
   const handleSubmit = async () => {
+    // Enhanced validation
     if (!name || !email) {
       toast.error("Please fill in all fields 😠");
+      return;
+    }
+
+    if (name.trim().length < 2) {
+      toast.error("Name must be at least 2 characters long 😠");
+      return;
+    }
+
+    if (name.trim().length > 100) {
+      toast.error("Name must be less than 100 characters 😠");
       return;
     }
 
@@ -55,23 +66,28 @@ export default function Home() {
 
     const promise = new Promise(async (resolve, reject) => {
       try {
-        // First, attempt to send the email
+        // First, attempt to send the email with Arcjet protection
         const mailResponse = await fetch("/api/mail", {
           cache: "no-store",
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ firstname: name, email }),
+          body: JSON.stringify({ firstname: name.trim(), email: email.trim() }),
         });
 
         if (!mailResponse.ok) {
+          const errorData = await mailResponse.json();
           if (mailResponse.status === 429) {
             reject("Rate limited");
+          } else if (mailResponse.status === 403) {
+            reject("Security check failed");
+          } else if (mailResponse.status === 400) {
+            reject(errorData.error || "Invalid input");
           } else {
             reject("Email sending failed");
           }
-          return; // Exit the promise early if mail sending fails
+          return;
         }
 
         // If email sending is successful, proceed to insert into Notion
@@ -80,12 +96,17 @@ export default function Home() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email }),
+          body: JSON.stringify({ name: name.trim(), email: email.trim() }),
         });
 
         if (!notionResponse.ok) {
+          const errorData = await notionResponse.json();
           if (notionResponse.status === 429) {
             reject("Rate limited");
+          } else if (notionResponse.status === 403) {
+            reject("Security check failed");
+          } else if (notionResponse.status === 400) {
+            reject(errorData.error || "Invalid input");
           } else {
             reject("Notion insertion failed");
           }
@@ -99,7 +120,7 @@ export default function Home() {
 
     toast.promise(promise, {
       loading: "Getting you on the waitlist... 🚀",
-      success: (data) => {
+      success: () => {
         setName("");
         setEmail("");
         return "Thank you for joining the waitlist 🎉";
@@ -107,12 +128,16 @@ export default function Home() {
       error: (error) => {
         if (error === "Rate limited") {
           return "You're doing that too much. Please try again later";
+        } else if (error === "Security check failed") {
+          return "Security check failed. Please try again �";
         } else if (error === "Email sending failed") {
-          return "Failed to send email. Please try again 😢.";
+          return "Failed to send email. Please try again 😢";
         } else if (error === "Notion insertion failed") {
-          return "Failed to save your details. Please try again 😢.";
+          return "Failed to save your details. Please try again 😢";
+        } else if (typeof error === "string" && error.includes("Invalid")) {
+          return error;
         }
-        return "An error occurred. Please try again 😢.";
+        return "An error occurred. Please try again 😢";
       },
     });
 
@@ -131,7 +156,7 @@ export default function Home() {
           subheadline="Transform your startup's legal compliance from a $10,000 bottleneck into your competitive advantage. Join 500+ founders building the borderless future."
           ctaText="Join the Private Beta Waitlist"
           ctaSubtext="Limited spots available • Exclusive founder pricing"
-          trustSignals={["Techstars", "Forbes 30 Under 30", "Nvidia Inception"]}
+          trustSignals={["Coming Soon!"]}
         />
 
         <Form

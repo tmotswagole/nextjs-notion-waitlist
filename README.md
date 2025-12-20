@@ -6,6 +6,7 @@
 <img src ="https://img.shields.io/badge/Upstash-00E9A3.svg?style=for-the-badge&logo=Upstash&logoColor=white">
 <img src ="https://img.shields.io/badge/Notion-000000.svg?style=for-the-badge&logo=Notion&logoColor=white">
 <img src ="https://img.shields.io/badge/Resend-000000.svg?style=for-the-badge&logo=Resend&logoColor=white">
+<img src ="https://img.shields.io/badge/Arcjet-6366F1.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAxMkwxMiAyMkwyMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+&logoColor=white">
 <img src ="https://img.shields.io/badge/shadcn/ui-000000.svg?style=for-the-badge&logo=shadcn/ui&logoColor=white">
 <img src ="https://img.shields.io/badge/Vercel-000000.svg?style=for-the-badge&logo=Vercel&logoColor=white">
 
@@ -30,6 +31,7 @@ The UI is built using a mix of shadcn/ui, Magic UI and Tailwind CSS.
 - **Notion as a CMS**: Use Notion to manage your waitlist users.
 - **Upstash Redis**: Use Upstash Redis to rate limit the number of signups in a given time period.
 - **Resend**: Use Resend to send emails to users who sign up.
+- **Arcjet Security**: Comprehensive security with bot detection, rate limiting, and email validation.
 - **Vercel**: Deploy the app to Vercel with a single click.
 - **shadcn/ui**: Use shadcn/ui for building the UI components.
 
@@ -66,6 +68,17 @@ It's fairly simple to get started with Upstash Redis. You can sign up for a free
 
 You need to sign up for a Resend account if not already. Then you need to add your domain and verify the DNS records. Once you have done that, you can generate an API key from the Resend dashboard which you will need to send emails.
 
+### Arcjet Security
+
+Sign up for a free Arcjet account at [https://app.arcjet.com](https://app.arcjet.com) and create a new site. You'll get an API key that you need to add to your environment variables. Arcjet provides:
+
+- Bot detection and blocking
+- Rate limiting for forms and API endpoints
+- Email validation (blocks disposable emails)
+- Shield protection against common attacks
+
+See [SECURITY.md](./SECURITY.md) for detailed security implementation information.
+
 ## Building with this template
 
 There are two ways to use this template:
@@ -81,6 +94,7 @@ The above button will create a new Vercel project and clone this repository into
 - `RESEND_API_KEY`: Your Resend API key.
 - `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST URL.
 - `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token.
+- `ARCJET_KEY`: Your Arcjet API key for security protection.
 
 2. **Manual Setup**: Fork this repository and clone it to your local machine.
 

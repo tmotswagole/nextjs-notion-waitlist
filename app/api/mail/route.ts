@@ -4,57 +4,105 @@ import JurificaWelcomeTemplate from "../../../emails";
 
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-import { Redis } from "@upstash/redis";
-import { Ratelimit } from "@upstash/ratelimit";
+import { formProtection } from "@/lib/arcjet";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const { email, firstname } = body;
 
-const ratelimit = new Ratelimit({
-  redis,
-  // 2 requests per minute from the same IP address in a sliding window of 1 minute duration which means that the window slides forward every second and the rate limit is reset every minute for each IP address.
-  limiter: Ratelimit.slidingWindow(2, "1 m"),
-});
+  // Arcjet protection with rate limiting, bot detection, and email validation
+  const decision = await formProtection.protect(request, {
+    email: email, // Email for validation
+  });
 
-export async function POST(request: NextRequest, response: NextResponse) {
-  const ip = request.ip ?? "127.0.0.1";
+  if (decision.isDenied()) {
+    if (decision.reason.isRateLimit()) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
 
-  const result = await ratelimit.limit(ip);
+    if (decision.reason.isBot()) {
+      return NextResponse.json(
+        { error: "Bot detected. Request blocked." },
+        { status: 403 }
+      );
+    }
 
-  if (!result.success) {
-    return Response.json(
-      {
-        error: "Too many requests!!",
-      },
-      {
-        status: 429,
-      },
+    if (decision.reason.isEmail()) {
+      return NextResponse.json(
+        { error: "Invalid or disposable email address." },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: "Request blocked for security reasons." },
+      { status: 403 }
     );
   }
 
-  const { email, firstname } = await request.json();
-
-  const { data, error } = await resend.emails.send({
-    from: "Jurifica<waitinglist@jurifica.com>",
-    to: [email],
-    subject: "Welcome to Jurifica's Private Beta Waitlist! 🚀",
-    reply_to: "jurificaai@gmail.com",
-    html:  await render(JurificaWelcomeTemplate({ userFirstname: firstname })),
-  });
-
-  // const { data, error } = { data: true, error: null }
-
-  if (error) {
-    return NextResponse.json(error);
+  // Validate required fields
+  if (!email || !firstname) {
+    return NextResponse.json(
+      { error: "Name and email are required fields." },
+      { status: 400 }
+    );
   }
 
-  if (!data) {
-    return NextResponse.json({ message: "Failed to send email" });
+  // Additional email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return NextResponse.json(
+      { error: "Please provide a valid email address." },
+      { status: 400 }
+    );
   }
 
-  return NextResponse.json({ message: "Email sent successfully" });
+  // Validate name (no empty strings, reasonable length)
+  if (firstname.trim().length < 2 || firstname.trim().length > 100) {
+    return NextResponse.json(
+      { error: "Name must be between 2 and 100 characters." },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Jurifica<waitinglist@jurifica.com>",
+      to: [email],
+      subject: "Welcome to Jurifica's Private Beta Waitlist! 🚀",
+      reply_to: "jurificaai@gmail.com",
+      html: await render(JurificaWelcomeTemplate({ userFirstname: firstname })),
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    if (!data) {
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ 
+      message: "Email sent successfully",
+      success: true 
+    });
+  } catch (error) {
+    console.error("Email sending error:", error);
+    return NextResponse.json(
+      { error: "An error occurred while sending email." },
+      { status: 500 }
+    );
+  }
 }

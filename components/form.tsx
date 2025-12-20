@@ -36,6 +36,10 @@ export default function Form({
           placeholder="Your Name"
           value={name}
           onChange={handleNameChange}
+          required
+          minLength={2}
+          maxLength={100}
+          aria-label="Your full name"
         />
       </motion.div>
       <motion.div variants={itemVariants}>
@@ -44,6 +48,8 @@ export default function Form({
           placeholder="Your Email Address"
           value={email}
           onChange={handleEmailChange}
+          required
+          aria-label="Your email address"
         />
       </motion.div>
       <motion.div variants={itemVariants}>
