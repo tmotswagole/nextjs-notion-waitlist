@@ -2,7 +2,11 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import CTA from "@/components/cta";
+import HeroSection from "@/components/hero-section";
+import ProblemSection from "@/components/problem-section";
+import SolutionSection from "@/components/solution-section";
+import TeamSection from "@/components/team-section";
+import VisionSection from "@/components/vision-section";
 import Form from "@/components/form";
 import Logos from "@/components/logos";
 import Particles from "@/components/ui/particles";
@@ -113,7 +117,13 @@ export default function Home() {
       <section className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
         <Header />
 
-        <CTA />
+        <HeroSection
+          headline="Stop Guessing. Start Scaling. The AI Co-Pilot for Global Legal Compliance"
+          subheadline="Transform your startup's legal compliance from a $10,000 bottleneck into your competitive advantage. Join 500+ founders building the borderless future."
+          ctaText="Join the Private Beta Waitlist"
+          ctaSubtext="Limited spots available • Exclusive founder pricing"
+          trustSignals={["Techstars", "Forbes 30 Under 30", "Nvidia Inception"]}
+        />
 
         <Form
           name={name}
@@ -126,6 +136,84 @@ export default function Home() {
 
         <Logos />
       </section>
+
+      {/* Problem Section */}
+      <ProblemSection
+        sectionHeader="The Legal Compliance Crisis Killing Startups"
+        columns={[
+          {
+            icon: "💸",
+            headline: "The $10,000 Bottleneck",
+            description: "Law firms charge premium rates for basic compliance work, creating cash flow nightmares for growing startups. Months of delays for simple contract reviews while your deals sit in legal limbo."
+          },
+          {
+            icon: "🎲",
+            headline: "Template Roulette",
+            description: "Generic templates from the internet leave you exposed to massive compliance risks. One missed jurisdiction requirement could cost you everything you've built."
+          },
+          {
+            icon: "📋",
+            headline: "The Admin Nightmare",
+            description: "Drowning in contract versions, compliance checklists, and regulatory updates across multiple countries. Your team spends more time on paperwork than building your product."
+          }
+        ]}
+      />
+
+      {/* Solution Section */}
+      <SolutionSection
+        sectionHeader="Meet Your AI Co-Pilot for Global Legal Compliance"
+        features={[
+          {
+            headline: "One Document. Multiple Countries",
+            description: "Our AI understands the nuances of international law. Generate compliant contracts that work across jurisdictions, automatically adapting to local requirements while maintaining your business logic."
+          },
+          {
+            headline: "We Don't Do Fill-in-the-Blanks",
+            description: "Forget generic templates. Our generative AI creates bespoke legal documents tailored to your specific business model, industry, and growth stage. Every document is crafted for your unique needs."
+          },
+          {
+            headline: "Finally, Legal in Plain English",
+            description: "No more legal jargon confusion. Our AI explains every clause, highlights risks, and suggests improvements in language you actually understand. Make informed decisions with confidence."
+          }
+        ]}
+      />
+
+      {/* Team Section */}
+      <TeamSection
+        sectionHeader="Meet the Founders"
+        subheader="Experienced entrepreneurs and legal tech experts building the future of global compliance"
+        members={[
+          {
+            name: "Thabiso Motswagole",
+            role: "Co-Founder & CEO",
+            title: "Forbes 30 Under 30 | Techstars",
+            description: "Serial entrepreneur with deep expertise in AI and international business scaling. Previously built and scaled tech companies across multiple continents."
+          },
+          {
+            name: "Nicolette Chinomona",
+            role: "Co-Founder & COO",
+            title: "Techstars MBA | Operations Expert",
+            description: "Operations and strategy leader with proven track record of scaling startups from seed to Series A. Expert in international market expansion and regulatory compliance."
+          },
+          {
+            name: "Ratidzo Murwisi",
+            role: "Co-Founder & CTO",
+            title: "15+ Years Legal Technology",
+            description: "Legal technology veteran with deep expertise in AI, machine learning, and regulatory systems. Previously led engineering teams at major legal tech companies."
+          }
+        ]}
+      />
+
+      {/* Vision Section */}
+      <VisionSection
+        headline="Building the Borderless Future"
+        description="We're not just building another legal tool. We're creating the infrastructure that will power the next generation of global businesses."
+        marketStats={{
+          marketSize: "$60B+ Global Market Opportunity",
+          architecture: "AI-Native Architecture",
+          design: "Global-First Design"
+        }}
+      />
 
       <Footer />
 

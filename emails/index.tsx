@@ -10,64 +10,82 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-interface EmailProps {
+interface JurificaEmailProps {
   userFirstname: string;
 }
 
-export const NotionWaitlistEmail = ({ userFirstname }: EmailProps) => (
+export const JurificaWaitlistEmail = ({ userFirstname }: JurificaEmailProps) => (
   <Html>
     <Head />
-    <Preview>Thanks for Joining the Waitlist, {userFirstname}! 🎉</Preview>
+    <Preview>Welcome to Jurifica's Private Beta, {userFirstname}! 🚀</Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
           src={`https://nextjs-notion-waitlist.vercel.app/waitlist-logo.png`}
           width="220"
           height="100"
-          alt="Notion Waitlist Logo"
+          alt="Jurifica Logo"
           style={logo}
         />
         <Text style={greeting}>Hi {userFirstname},</Text>
         <Text style={paragraph}>
-          Thanks for joining the waitlist for our Next.js + Notion CMS waitlist
-          template! I'm Lakshay, the developer behind this project. I'm glad to
-          have you on board.
+          Welcome to Jurifica's exclusive private beta waitlist! I'm Thabiso, 
+          co-founder and CEO of Jurifica. Thank you for joining us on this journey 
+          to revolutionize global legal compliance.
         </Text>
         <Text style={paragraph}>
-          I'll keep you posted on the progress and notify you as soon as it's
-          ready for you to use. In the meantime, if you have any questions or
-          feedback, don't hesitate to reach out by replying directly to{" "}
-          <a href="mailto:lakshb.work@gmail.com" style={link}>
-            this email {""}
+          You're now part of an exclusive group getting early access to the AI 
+          co-pilot that will transform how your business scales internationally. 
+          No more $10,000 legal bottlenecks, no more template roulette, and no 
+          more admin nightmares.
+        </Text>
+        <Text style={paragraph}>
+          As a private beta member, you'll get:
+        </Text>
+        <Text style={bulletPoint}>• Founder pricing (significant savings)</Text>
+        <Text style={bulletPoint}>• Direct access to our founding team</Text>
+        <Text style={bulletPoint}>• Priority support and feature requests</Text>
+        <Text style={bulletPoint}>• First look at our AI-native legal compliance platform</Text>
+        <Text style={paragraph}>
+          We'll keep you updated on our progress and notify you the moment your 
+          beta access is ready. Have questions or want to share your legal compliance 
+          challenges? Reply directly to{" "}
+          <a href="mailto:jurificaai@gmail.com" style={link}>
+            jurificaai@gmail.com
           </a>
-          — I'm here to listen!
+          {" "}— we read every email.
         </Text>
         <Text style={paragraph}>
-          You can also follow me on X/Twitter for updates:{" "}
-          <a href="https://x.com/blakssh" style={link}>
-            @blakssh
+          Connect with us on LinkedIn for updates and insights:{" "}
+          <a href="https://linkedin.com/company/jurifica" style={link}>
+            Jurifica on LinkedIn
           </a>
         </Text>
         <Text style={signOff}>
-          Best regards,
+          Looking forward to building the future of legal compliance together,
           <br />
-          Lakshay
+          <br />
+          Thabiso Motswagole
+          <br />
+          Co-Founder & CEO, Jurifica
+          <br />
+          Forbes 30 Under 30 | Techstars
         </Text>
         <Hr style={hr} />
         <Text style={footer}>
-          You received this email because you signed up for the Notion waitlist.
-          If you believe this is a mistake, feel free to ignore this email.
+          You received this email because you joined Jurifica's private beta waitlist.
+          © 2025 Jurifica Global, Inc. All rights reserved.
         </Text>
       </Container>
     </Body>
   </Html>
 );
 
-NotionWaitlistEmail.PreviewProps = {
+JurificaWaitlistEmail.PreviewProps = {
   userFirstname: "Tyler",
-} as EmailProps;
+} as JurificaEmailProps;
 
-export default NotionWaitlistEmail;
+export default JurificaWaitlistEmail;
 
 const main = {
   background: "linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%)",
@@ -110,6 +128,13 @@ const signOff = {
   fontSize: "16px",
   lineHeight: "26px",
   marginTop: "20px",
+};
+
+const bulletPoint = {
+  fontSize: "16px",
+  lineHeight: "26px",
+  marginBottom: "8px",
+  marginLeft: "20px",
 };
 
 const hr = {
