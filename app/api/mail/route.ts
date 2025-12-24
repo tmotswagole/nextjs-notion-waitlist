@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
       from: "Jurifica<waitinglist@jurifica.com>",
       to: [email],
       subject: "Welcome to Jurifica's Private Beta Waitlist! 🚀",
-      reply_to: "jurificaai@gmail.com",
+      reply_to: "hello@jurifica.com",
       html: await render(JurificaWelcomeTemplate({ userFirstname: firstname })),
     });
 

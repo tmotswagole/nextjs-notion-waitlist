@@ -41,9 +41,9 @@ export default function Footer() {
 
         <div className="flex items-center gap-6">
           <Link
-            href="mailto:jurificaai@gmail.com"
+            href="mailto:hello@jurifica.com"
             className="text-sm hover:text-foreground transition-colors duration-200">
-            jurificaai@gmail.com
+            hello@jurifica.com
           </Link>
           <Link
             href="https://linkedin.com/company/jurifica"

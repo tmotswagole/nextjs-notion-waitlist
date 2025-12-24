@@ -14,20 +14,23 @@ interface JurificaEmailProps {
   userFirstname: string;
 }
 
-export const JurificaWaitlistEmail = ({ userFirstname }: JurificaEmailProps) => (
-  <Html>
-    <Head />
-    <Preview>Welcome to Jurifica's Private Beta, {userFirstname}! 🚀</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Img
-          src={`https://nextjs-notion-waitlist.vercel.app/waitlist-logo.png`}
-          width="220"
-          height="100"
-          alt="Jurifica Logo"
-          style={logo}
-        />
-        <Text style={greeting}>Hi {userFirstname},</Text>
+export const JurificaWaitlistEmail = ({ userFirstname }: JurificaEmailProps) => {
+  const firstName = userFirstname.split(' ')[0];
+  
+  return (
+    <Html>
+      <Head />
+      <Preview>Welcome to Jurifica's Private Beta, {firstName}! 🚀</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Img
+            src={`/logo.svg`}
+            width="220"
+            height="100"
+            alt="Jurifica Logo"
+            style={logo}
+          />
+          <Text style={greeting}>Hi {firstName},</Text>
         <Text style={paragraph}>
           Welcome to Jurifica's exclusive private beta waitlist! I'm Thabiso, 
           co-founder and CEO of Jurifica. Thank you for joining us on this journey 
@@ -50,8 +53,8 @@ export const JurificaWaitlistEmail = ({ userFirstname }: JurificaEmailProps) => 
           We'll keep you updated on our progress and notify you the moment your 
           beta access is ready. Have questions or want to share your legal compliance 
           challenges? Reply directly to{" "}
-          <a href="mailto:jurificaai@gmail.com" style={link}>
-            jurificaai@gmail.com
+          <a href="mailto:hello@jurifica.com" style={link}>
+            hello@jurifica.com
           </a>
           {" "}— we read every email.
         </Text>
@@ -79,7 +82,8 @@ export const JurificaWaitlistEmail = ({ userFirstname }: JurificaEmailProps) => 
       </Container>
     </Body>
   </Html>
-);
+  );
+};
 
 JurificaWaitlistEmail.PreviewProps = {
   userFirstname: "Tyler",
