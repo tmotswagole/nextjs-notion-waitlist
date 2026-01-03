@@ -15,10 +15,10 @@ export default function PrivacyPage() {
           <CardContent>
             <article className='prose prose-gray dark:prose-invert max-w-none'>
               <p>
-                Welcome to Jurifica! This Privacy Policy describes how "Jurifica Global LLC"
-                ("Jurifica," "we," "us," or "our") collects, uses, shares, and protects your personal
+                Welcome to Jurifica! This Privacy Policy describes how &ldquo;Jurifica Global LLC&rdquo;
+                (&ldquo;Jurifica,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, shares, and protects your personal
                 information when you access or use our website, platform, AI-powered document
-                generation tools, and related services (collectively, the "Services").
+                generation tools, and related services (collectively, the &ldquo;Services&rdquo;).
               </p>
               
               <p>
@@ -361,7 +361,7 @@ export default function PrivacyPage() {
               <h2>8. Changes to This Privacy Policy</h2>
               <p>
                 We may update our Privacy Policy from time to time. We will notify you of any changes
-                by posting the new Privacy Policy on this page and updating the "Last Updated" date at
+                by posting the new Privacy Policy on this page and updating the &ldquo;Last Updated,&ldquo; date at
                 the top of this Privacy Policy. You are advised to review this Privacy Policy
                 periodically for any changes. Changes to this Privacy Policy are effective when they
                 are posted on this page. For material changes, we may provide more prominent notice
