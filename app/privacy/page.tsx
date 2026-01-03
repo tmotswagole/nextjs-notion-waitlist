@@ -198,7 +198,7 @@ export default function PrivacyPage() {
                 <li>
                   <strong>To Power AI Features:</strong> The specific input data you provide for
                   document generation will be processed by our AI engine (Google Gemini) to produce
-                  the requested document. Google's use of this data is subject to their terms and
+                  the requested document. Google,&apos;s use of this data is subject to their terms and
                   privacy policies. We strive to use AI providers committed to data security and
                   responsible AI practices.
                 </li>
@@ -243,7 +243,7 @@ export default function PrivacyPage() {
               <h3>Data Security</h3>
               <p>
                 We implement appropriate technical and organizational security measures designed to
-                protect the security of any personal information we process. We leverage Supabase's
+                protect the security of any personal information we process. We leverage Supabase,&apos;s
                 built-in security features for database and storage, and tools like Arcjet for
                 application-level security. However, please also remember that no method of
                 transmission over the Internet, or method of electronic storage, is 100% secure. While
@@ -258,7 +258,7 @@ export default function PrivacyPage() {
                 with our legal obligations (e.g., if we are required to retain your data to comply
                 with applicable laws), resolve disputes, and enforce our legal agreements and
                 policies. Document content you generate and store on our platform will be retained as
-                long as your account is active and subject to your tier's storage limitations, or
+                long as your account is active and subject to your tier,&apos;s storage limitations, or
                 until you delete it. We may retain certain usage data and anonymized/aggregated data
                 for longer periods for internal analysis purposes.
               </p>
@@ -338,7 +338,7 @@ export default function PrivacyPage() {
                 </li>
               </ul>
 
-              <h2>6. Children's Privacy</h2>
+              <h2>6. Children,&apos;s Privacy</h2>
               <p>
                 Our Services are not intended for use by children under the age of 13 (or a higher age
                 threshold as required by applicable local law, e.g., 16 in certain EU countries for
@@ -352,7 +352,7 @@ export default function PrivacyPage() {
               <h2>7. Links to Other Websites</h2>
               <p>
                 Our Services may contain links to other websites that are not operated by us. If you
-                click on a third-party link, you will be directed to that third party's site. We
+                click on a third-party link, you will be directed to that third party,&apos;s site. We
                 strongly advise you to review the Privacy Policy of every site you visit. We have no
                 control over and assume no responsibility for the content, privacy policies, or
                 practices of any third-party sites or services.
@@ -389,7 +389,7 @@ export default function PrivacyPage() {
                 </a>
               </address>
               <p className='mt-4'>
-                For data protection purposes, Jurifica's Data Protection Officer (or responsible
+                For data protection purposes, Jurifica,&apos;s Data Protection Officer (or responsible
                 individual) can be reached at the email above.
               </p>
             </article>
