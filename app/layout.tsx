@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { ConsentBanner } from "@/components/consent-banner";
+import { WebVitals } from "@/components/web-vitals";
 
 const FigtreeFont = Figtree({ subsets: ["latin"] });
 
@@ -91,6 +93,8 @@ export default function RootLayout({
         <ConsentBanner />
         <Toaster richColors position="top-center" />
         <Analytics />
+        <SpeedInsights />
+        <WebVitals />
       </body>
     </html>
   );

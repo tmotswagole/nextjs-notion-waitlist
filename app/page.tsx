@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
+import { trackFormSubmission, trackError } from "@/lib/monitoring";
 import HeroSection from "@/components/hero-section";
 import ProblemSection from "@/components/problem-section";
 import SolutionSection from "@/components/solution-section";
@@ -123,9 +124,13 @@ export default function Home() {
       success: () => {
         setName("");
         setEmail("");
+        trackFormSubmission("waitlist", true);
         return "Thank you for joining the waitlist 🎉";
       },
       error: (error) => {
+        trackFormSubmission("waitlist", false);
+        trackError(error.toString(), "form_submission");
+        
         if (error === "Rate limited") {
           return "You're doing that too much. Please try again later";
         } else if (error === "Security check failed") {
