@@ -68,22 +68,27 @@ export default function RootLayout({
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
+            // Define dataLayer and the gtag function
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
             
-            // Initialize with denied consent by default (GDPR compliant)
+            // Set default consent to 'denied' for all parameters (Consent Mode v2)
             gtag('consent', 'default', {
-              analytics_storage: 'denied',
-              ad_storage: 'denied',
-              wait_for_update: 500
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied',
+              'wait_for_update': 500
             });
             
-            // Configure Google Analytics
+            // Initialize Google Analytics
+            gtag('js', new Date());
+            
+            // Configure Google Analytics with privacy-first settings
             gtag('config', 'G-Q3P3DJSX93', {
-              anonymize_ip: true,
-              allow_google_signals: false,
-              allow_ad_personalization_signals: false
+              'anonymize_ip': true,
+              'allow_google_signals': false,
+              'allow_ad_personalization_signals': false
             });
           `}
         </Script>

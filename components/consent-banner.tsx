@@ -22,6 +22,16 @@ export function ConsentBanner() {
         setShowBanner(true);
       } else if (consent === "accepted") {
         enableGoogleAnalytics();
+      } else if (consent === "essential") {
+        // Enable only analytics for essential cookies
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag("consent", "update", {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'granted'
+          });
+        }
       }
       setIsLoaded(true);
     }, 100);
@@ -31,10 +41,28 @@ export function ConsentBanner() {
 
   const enableGoogleAnalytics = () => {
     if (typeof window !== "undefined" && window.gtag) {
+      // Update consent for all Consent Mode v2 parameters
       window.gtag("consent", "update", {
-        analytics_storage: "granted",
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted', 
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
       });
     }
+  };
+
+  const handleAcceptEssential = () => {
+    localStorage.setItem("cookie-consent", "essential");
+    if (typeof window !== "undefined" && window.gtag) {
+      // Only grant analytics storage for essential cookies
+      window.gtag("consent", "update", {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'granted'
+      });
+    }
+    setShowBanner(false);
   };
 
   const handleAccept = () => {
@@ -46,8 +74,12 @@ export function ConsentBanner() {
   const handleDecline = () => {
     localStorage.setItem("cookie-consent", "declined");
     if (typeof window !== "undefined" && window.gtag) {
+      // Explicitly deny all consent parameters
       window.gtag("consent", "update", {
-        analytics_storage: "denied",
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied', 
+        'analytics_storage': 'denied'
       });
     }
     setShowBanner(false);
@@ -64,8 +96,8 @@ export function ConsentBanner() {
             <div className="flex-1">
               <h3 className="text-sm font-medium mb-1">Cookie Consent</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                We use cookies to analyze site usage and improve your experience. 
-                Your data helps us understand how visitors interact with our website.{" "}
+                We use cookies and similar technologies to analyze site usage, improve your experience, and for advertising purposes. 
+                This includes analytics data, user behavior tracking, and personalized advertising.{" "}
                 <a 
                   href="/privacy" 
                   className="text-primary underline hover:no-underline"
@@ -82,7 +114,15 @@ export function ConsentBanner() {
               onClick={handleDecline}
               className="text-xs"
             >
-              Decline
+              Decline All
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleAcceptEssential}
+              className="text-xs"
+            >
+              Essential Only
             </Button>
             <Button
               size="sm"
