@@ -4,6 +4,7 @@ import { Figtree } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { ConsentBanner } from "@/components/consent-banner";
 
 const FigtreeFont = Figtree({ subsets: ["latin"] });
 
@@ -68,12 +69,26 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-Q3P3DJSX93');
+            
+            // Initialize with denied consent by default (GDPR compliant)
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+              wait_for_update: 500
+            });
+            
+            // Configure Google Analytics
+            gtag('config', 'G-Q3P3DJSX93', {
+              anonymize_ip: true,
+              allow_google_signals: false,
+              allow_ad_personalization_signals: false
+            });
           `}
         </Script>
       </head>
       <body className={FigtreeFont.className}>
         {children}
+        <ConsentBanner />
         <Toaster richColors position="top-center" />
         <Analytics />
       </body>
