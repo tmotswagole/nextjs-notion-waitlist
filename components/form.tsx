@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ChangeEvent } from "react";
 import { motion } from "framer-motion";
