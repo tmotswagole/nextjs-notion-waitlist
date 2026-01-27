@@ -118,14 +118,3 @@ bun email
 
 Create a `.env.local` file in the root of the project and add the environment variables mentioned above. You can also have a look at the `.env.example` file for reference.
 
-## License
-
-You can use this template for personal or commercial projects. You can modify it as you like.
-
-However, if you use this template for commercial projects, please consider [buying me a coffee](https://www.buymeacoffee.com/lakshaybhushan) or sponsoring me on GitHub. It will help me to keep creating more templates like this.
-
-<a href="https://www.buymeacoffee.com/lakshaybhushan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="200"></a>
-
----
-
-If you have any questions or need help with this template, feel free to reach out to me on [Twitter](https://x.com/blakssh) or leave a comment on this repository.
