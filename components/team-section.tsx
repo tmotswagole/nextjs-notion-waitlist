@@ -40,16 +40,16 @@ export default function TeamSection({
         </p>
       </motion.div>
 
-      {/* Three-column team layout */}
+      {/* Single centered team layout */}
       <motion.div
         variants={containerVariants}
-        className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12"
+        className="flex justify-center"
       >
-        {members.map((member, index) => (
+        {members.slice(0, 1).map((member, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
-            className="flex flex-col items-center text-center space-y-4"
+            className="flex max-w-sm flex-col items-center space-y-4 text-center"
           >
             {/* Profile Icon/Avatar */}
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">

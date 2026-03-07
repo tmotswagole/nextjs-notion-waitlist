@@ -219,8 +219,8 @@ export default function Home() {
 
       {/* Team Section */}
       <TeamSection
-        sectionHeader="Meet the Founders"
-        subheader="Experienced entrepreneurs and legal tech experts building the future of global compliance"
+        sectionHeader="Meet the Founder"
+        subheader="Experienced entrepreneur and legal tech expert building the future of global compliance"
         members={[
           {
             img: "/founders/thabiso.png",
