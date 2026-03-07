@@ -228,20 +228,6 @@ export default function Home() {
             role: "Co-Founder & CEO",
             title: "Forbes 30 Under 30 | Techstars",
             description: "The Builder. Forbes 30 Under 30 winner and Techstars alumnus. Former CIO who has architected scalable platforms for global media and fintech."
-          },
-          {
-            img: "/founders/nicolette.png",
-            name: "Nicolette Chinomona",
-            role: "Co-Founder & COO",
-            title: "Techstars MBA | Operations Expert",
-            description: "The Strategist. Techstars-affiliated MBA with a decade of experience coaching and scaling startups across Africa, Europe, and North America."
-          },
-          {
-            img: "/founders/ratidzo.png",
-            name: "Ratidzo Murwisi",
-            role: "Co-Founder & CLIO",
-            title: "15+ Years Legal Technology",
-            description: "The Expert. A pioneering Legal Technologist with 15 years of experience at the intersection of law and high-value international finance (Afreximbank)."
           }
         ]}
       />

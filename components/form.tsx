@@ -75,20 +75,6 @@ export default function Form({
           target="_blank">
           <FaLinkedin className="ml-0.5 h-5 w-5 transition-all duration-200 ease-linear hover:text-blue-200" />
         </Link>
-        or
-        <Link
-          href="https://www.linkedin.com/in/nicolettec/"
-          rel="noopener noreferrer"
-          target="_blank">
-          <FaLinkedin className="ml-0.5 h-5 w-5 transition-all duration-200 ease-linear hover:text-blue-200" />
-        </Link>
-        or
-        <Link
-          href="https://www.linkedin.com/in/ratidzo-murwisi/"
-          rel="noopener noreferrer"
-          target="_blank">
-          <FaLinkedin className="ml-0.5 h-5 w-5 transition-all duration-200 ease-linear hover:text-blue-200" />
-        </Link>
       </motion.div>
     </motion.div>
   );
